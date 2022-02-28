@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -102,5 +103,8 @@
       }
     }
   },
-  "defaultProject": "my-angular-project"
+  "defaultProject": "my-angular-project",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
