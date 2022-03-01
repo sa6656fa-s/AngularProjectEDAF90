@@ -26,7 +26,8 @@ export class MovieSearchComponent implements OnInit {
     searchText: ''
   });
 
-  movies: String[] = []
+  movies: string[] = []
+  titles: string[] = []
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,12 +39,15 @@ export class MovieSearchComponent implements OnInit {
 
   onSubmit(): void {
     this.movies = []
+    this.titles = []
     let searchString = this.searchForm.value.searchText
 
     let outerObservable = this.http.get("https://www.omdbapi.com/?s="+ searchString + "&apikey=e1d338ae&")
     outerObservable.subscribe(event => {
       for (let i in (event as SearchResponse).Search){
-        let titleYear = (((event as SearchResponse).Search[i]) as MovieInfo).Title + "; " + (((event as SearchResponse).Search[i]) as MovieInfo).Year
+        let title = (((event as SearchResponse).Search[i]) as MovieInfo).Title
+        let titleYear =  title + "; " + (((event as SearchResponse).Search[i]) as MovieInfo).Year
+        this.titles.push(title)
         this.movies.push(titleYear)
       }
       
@@ -53,7 +57,9 @@ export class MovieSearchComponent implements OnInit {
         let innerObservable = this.http.get("https://www.omdbapi.com/?s="+ searchString + "&page=" + page + "&apikey=e1d338ae&")
         innerObservable.subscribe(event2 => {
           for (let i in (event2 as SearchResponse).Search){
-            let titleYear = (((event2 as SearchResponse).Search[i]) as MovieInfo).Title + "; " + (((event2 as SearchResponse).Search[i]) as MovieInfo).Year
+            let title = (((event2 as SearchResponse).Search[i]) as MovieInfo).Title
+            let titleYear = title + "; " + (((event2 as SearchResponse).Search[i]) as MovieInfo).Year
+            this.titles.push(title)
             this.movies.push(titleYear)
           }
         })

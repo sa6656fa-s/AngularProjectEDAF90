@@ -3,7 +3,8 @@
         <input id="searchText" type="text" formControlName="searchText">
         <button class="button" type="submit">Sök</button>
     </form>
-    <option *ngFor="let movie of movies; let i = index" [attr.data-index]="i">
-        {{movie}}
-    </option>
+    <a *ngFor="let movie of movies; let i = index" [attr.data-index]="i" routerLink="/filminformation/{{titles[i]}}">
+        {{movie}} 
+        <pre></pre>
+    </a>
 </div>

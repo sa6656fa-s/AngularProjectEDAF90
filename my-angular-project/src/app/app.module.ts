@@ -10,6 +10,8 @@ import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { MovieInfoComponent } from './movie-info/movie-info.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     MovieSearchComponent,
     ContactPageComponent,
     HomePageComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    MovieInfoComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
