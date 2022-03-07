@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
+import { SharedService } from '../shared-service/shared-service';
 
 interface MovieData
 {
@@ -13,6 +14,7 @@ interface MovieData
   Actors: String,
   Plot: String
 }
+
 
 @Component({
   selector: 'app-movie-info',
@@ -31,7 +33,8 @@ export class MovieInfoComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private http: HttpClient,
-              private formBuilder: FormBuilder){}
+              private formBuilder: FormBuilder,
+              private sharedService: SharedService){}
 
   ngOnInit(): void {
     let title = this.route.snapshot.paramMap.get('title');
@@ -76,7 +79,8 @@ export class MovieInfoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.router.navigate(['/shopping-cart', {newTitle: this.title}]);
+    this.sharedService.newTitle = this.title
+    this.router.navigate(['/shopping-cart']);
     this.orderForm.reset();
   }
 

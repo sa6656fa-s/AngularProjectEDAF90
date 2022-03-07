@@ -1,3 +1,7 @@
 <option class="center" *ngFor="let title of titles">
     {{title}} 
 </option>
+<form class="center"[formGroup]="submitOrderForm" (ngSubmit)="onSubmit()">
+    <button class="btn btn-primary" *ngIf="!submitted"type="submit">Submit order</button>
+</form>
+<h1 class="center"*ngIf="submitted">Your order has been submitted</h1>

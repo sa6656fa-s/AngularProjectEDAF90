@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { Router} from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { SharedService } from '../shared-service/shared-service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,8 +10,14 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class ShoppingCartComponent implements OnInit {
   titles: string[] = []
-  constructor(private route: ActivatedRoute) { 
-  }
+  submitted: boolean = false
+
+  submitOrderForm = this.formBuilder.group({
+  });
+
+  constructor(private router: Router,  
+              private formBuilder: FormBuilder,
+              private sharedService: SharedService) {}
 
   ngOnInit(): void {
     let storedTitles = window.localStorage.getItem("titles")
@@ -19,13 +27,21 @@ export class ShoppingCartComponent implements OnInit {
     if(this.titles == null) {
       this.titles = []
     }
-    let newTitle = this.route.snapshot.paramMap.get('newTitle')
-    console.log(newTitle)
-    console.log(this.titles)
-    if (newTitle != null){
+    let newTitle = this.sharedService.newTitle
+    if (newTitle != ""){
       this.titles.push(newTitle)
     }
+    this.sharedService.newTitle = ""
     window.localStorage.setItem("titles", JSON.stringify(this.titles))
   }
    
+  onSubmit(): void {
+    console.log(this.titles)
+    window.localStorage.clear()
+    window.localStorage.setItem("titles", JSON.stringify([]))
+    this.ngOnInit()
+    this.submitted = true
+    this.submitOrderForm.reset();
+  }
+
 }

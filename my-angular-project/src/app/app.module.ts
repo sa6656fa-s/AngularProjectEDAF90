@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HomePageComponent,
     ShoppingCartComponent,
     MovieInfoComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
