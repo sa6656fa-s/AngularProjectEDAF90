@@ -15,7 +15,9 @@ export class ShoppingCartComponent implements OnInit {
     let storedTitles = window.localStorage.getItem("titles")
     if (storedTitles != null){
       this.titles = JSON.parse(storedTitles)
-    } 
+    } else {
+      this.titles = []
+    }
     let newTitle = this.route.snapshot.paramMap.get('newTitle')
     console.log(newTitle)
     if (newTitle != null){
