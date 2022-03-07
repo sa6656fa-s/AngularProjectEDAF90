@@ -28,6 +28,7 @@ export class MovieSearchComponent implements OnInit {
 
   movies: string[] = []
   titles: string[] = []
+  showMessage = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +36,7 @@ export class MovieSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showMessage = false
     window.localStorage.setItem("activeTab", "2")
   }
 
@@ -65,9 +67,13 @@ export class MovieSearchComponent implements OnInit {
           }
         })
       })
+      if (this.titles.length == 0){
+        this.showMessage = true
+      } else {
+        this.showMessage = false
+        this.searchForm.reset();
+       }
     }) 
-    
-    this.searchForm.reset();
   }
 
 }
