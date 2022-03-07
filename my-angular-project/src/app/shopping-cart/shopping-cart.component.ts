@@ -12,7 +12,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titles =  JSON.parse(window.localStorage.getItem("titles") as string)
+    let storedTitles = window.localStorage.getItem("titles")
+    if (storedTitles != null){
+      this.titles = JSON.parse(storedTitles)
+    } 
     let newTitle = this.route.snapshot.paramMap.get('newTitle')
     console.log(newTitle)
     if (newTitle != null){
