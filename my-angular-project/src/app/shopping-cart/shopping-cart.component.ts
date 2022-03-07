@@ -20,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
               private sharedService: SharedService) {}
 
   ngOnInit(): void {
+    window.localStorage.setItem("activeTab", "4")
     let storedTitles = window.localStorage.getItem("titles")
     if (storedTitles != null){
       this.titles = JSON.parse(storedTitles)
@@ -27,12 +28,6 @@ export class ShoppingCartComponent implements OnInit {
     if(this.titles == null) {
       this.titles = []
     }
-    let newTitle = this.sharedService.newTitle
-    if (newTitle != ""){
-      this.titles.push(newTitle)
-    }
-    this.sharedService.newTitle = ""
-    window.localStorage.setItem("titles", JSON.stringify(this.titles))
   }
    
   onSubmit(): void {

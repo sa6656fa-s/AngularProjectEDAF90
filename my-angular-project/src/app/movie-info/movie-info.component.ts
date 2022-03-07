@@ -25,8 +25,10 @@ export class MovieInfoComponent implements OnInit {
 
   info: string = ""
   title: string = ""
+  showMessage: boolean = false
+  message = ""
 
-  orderForm = this.formBuilder.group({
+  addForm = this.formBuilder.group({
   });
 
 
@@ -37,6 +39,7 @@ export class MovieInfoComponent implements OnInit {
               private sharedService: SharedService){}
 
   ngOnInit(): void {
+    window.localStorage.setItem("activeTab", "2")
     let title = this.route.snapshot.paramMap.get('title');
     this.title = title as string
     let observable = this.http.get("https://www.omdbapi.com/?t="+ title + "&plot=full&apikey=e1d338ae&")
@@ -79,9 +82,20 @@ export class MovieInfoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.sharedService.newTitle = this.title
-    this.router.navigate(['/shopping-cart']);
-    this.orderForm.reset();
+    let storedTitles = window.localStorage.getItem("titles")
+    let result = []
+    if (storedTitles != null){
+      result = JSON.parse(storedTitles)
+    }
+    if (!result.includes(this.title)){
+      result.push(this.title)
+      this.message = "Item added to cart"
+    } else {
+      this.message = "Item already in cart"
+    }
+    window.localStorage.setItem("titles", JSON.stringify(result))
+    this.showMessage = true
+    this.addForm.reset();
   }
 
 }

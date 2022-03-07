@@ -35,6 +35,7 @@ export class MovieSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.localStorage.setItem("activeTab", "2")
   }
 
   onSubmit(): void {

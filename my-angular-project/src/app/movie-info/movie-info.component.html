@@ -1,7 +1,10 @@
 <div class="center">
     <h1>{{title}}</h1>
     <p style="white-space:pre-wrap;">{{info}}</p>
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-        <button class="btn btn-primary" type="submit">Order movie</button>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <button class="btn btn-primary" type="submit">Add to cart</button>
     </form>
+    <option  *ngIf="showMessage">
+        {{message}}
+    </option>
 </div>

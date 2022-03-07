@@ -1,20 +1,18 @@
 <h1 class="center">Movie rental</h1>
-<div class="btn-group btn-group-toggle nav-tabs">
-  <ul ngbNav #nav="ngbNav" class="nav-tabs">
-    <li id="home" ngbNavItem>
+  <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+    <ng-container [ngbNavItem]="1">
       <a ngbNavLink routerLink="/">Home</a>
-    </li>
-    <li id="searchMovie" ngbNavItem>
+    </ng-container>
+    <ng-container [ngbNavItem]="2">
       <a ngbNavLink routerLink="/search-movie">Search movie</a>
-    </li>
-    <li id="contact" ngbNavItem>
+    </ng-container>
+    <ng-container [ngbNavItem]="3">
       <a ngbNavLink routerLink="/contact">Contact us</a>
-    </li>
-    <li id="shoppingCart" ngbNavItem>
+    </ng-container>
+    <ng-container [ngbNavItem]="4">
       <a ngbNavLink routerLink="/shopping-cart">Shopping cart</a>
-    </li>
-  </ul>
-  <div [ngbNavOutlet]="nav"></div>
-</div>
+    </ng-container>
+
+  </nav>
 
 <router-outlet></router-outlet>

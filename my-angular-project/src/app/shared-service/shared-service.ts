@@ -4,5 +4,6 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class SharedService {
-    newTitle: string = "";
+    newTitles: string[] = [];
+    activeTab: number = 1;
 }
