@@ -4,6 +4,12 @@ import Tile from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import View from 'ol/View';
 import * as olProj from 'ol/proj';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import { Feature } from 'ol';
+import { Point } from 'ol/geom';
+import {Icon, Style} from 'ol/style';
+
 
 @Component({
   selector: 'app-contact-page',
@@ -15,6 +21,7 @@ export class ContactPageComponent implements OnInit {
 
   map: any;
   view:any;
+  pos: any;
 
   constructor() { }
   
@@ -23,18 +30,43 @@ export class ContactPageComponent implements OnInit {
   }
 
   createMap(){
+    var osm = new Tile({
+      source: new OSM()
+    });
+
+    this.pos = new Feature({
+      geometry: new Point(olProj.fromLonLat( [13.210362, 55.711163]))
+    });
+
+    this.pos.setStyle(new Style({
+      image: new Icon({
+        color: '#FFFFFF',
+        src: 'assets/office-svgrepo-com.svg',
+        imgSize: [20,20]
+
+
+      })
+    }))
+      const vectorLayer = new VectorLayer({
+        source: new VectorSource({
+          features: [this.pos]
+        })
+        
+      });
+    
     this.map = new Map({
       target: 'map',
       layers: [
-        new Tile({
-          source: new OSM(),
-        })
+        osm,
+        vectorLayer
       ],
       view: new View({
-        center: olProj.fromLonLat([7.0785, 51.4614]),
-        zoom: 4
+        center: olProj.fromLonLat([ 13.210362,55.711163]),
+        zoom: 17
       }),
     });
+
+    
   }
 
 }
