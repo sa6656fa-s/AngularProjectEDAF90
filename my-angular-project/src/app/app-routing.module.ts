@@ -6,6 +6,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UnknownTitleComponent } from './unknown-title/unknown-title.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactPageComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'movie-information/:title', component: MovieInfoComponent },
+  { path: 'title-does-not-exist', component: UnknownTitleComponent  },
   { path: ':', component: NotFoundComponent}
 ];
 

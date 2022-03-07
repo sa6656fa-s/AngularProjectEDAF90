@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
-import { SharedService } from '../shared-service/shared-service';
 
 interface MovieData
 {
@@ -35,8 +34,7 @@ export class MovieInfoComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private http: HttpClient,
-              private formBuilder: FormBuilder,
-              private sharedService: SharedService){}
+              private formBuilder: FormBuilder){}
 
   ngOnInit(): void {
     window.localStorage.setItem("activeTab", "2")
@@ -48,7 +46,7 @@ export class MovieInfoComponent implements OnInit {
         this.router.navigate(['/title-does-not-exist']);
       } else {
         if((data as MovieData).Year == 'N/A'){
-          this.info += "Uknown publicing year\n\n"
+          this.info += "Unknown publicing year\n\n"
         } else {
           this.info += "Publicing year: " + (data as MovieData).Year + "\n\n"
         }
@@ -68,7 +66,7 @@ export class MovieInfoComponent implements OnInit {
           this.info += "Language: " + (data as MovieData).Language + "\n\n"
         }
         if((data as MovieData).Actors == 'N/A'){
-          this.info += "Uknown actors\n\n"
+          this.info += "Unknown actors\n\n"
         } else {
           this.info += "Actors: " + (data as MovieData).Actors + "\n\n"
         }

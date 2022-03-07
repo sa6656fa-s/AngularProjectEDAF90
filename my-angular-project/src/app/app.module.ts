@@ -12,6 +12,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UnknownTitleComponent } from './unknown-title/unknown-title.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ShoppingCartComponent,
     MovieInfoComponent,
     NotFoundComponent,
+    UnknownTitleComponent,
   ],
   imports: [
     BrowserModule,

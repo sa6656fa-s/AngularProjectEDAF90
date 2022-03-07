@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
 import { FormBuilder } from '@angular/forms';
-import { SharedService } from '../shared-service/shared-service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,9 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   submitOrderForm = this.formBuilder.group({
   });
 
-  constructor(private router: Router,  
-              private formBuilder: FormBuilder,
-              private sharedService: SharedService) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     window.localStorage.setItem("activeTab", "4")
