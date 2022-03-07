@@ -9,10 +9,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'sok-film', component: MovieSearchComponent },
-  { path: 'kontakt', component: ContactPageComponent},
-  { path: 'varukorg', component: ShoppingCartComponent },
-  { path: 'filminformation/:title', component: MovieInfoComponent },
+  { path: 'search-movie', component: MovieSearchComponent },
+  { path: 'contact', component: ContactPageComponent},
+  { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'movie-information/:title', component: MovieInfoComponent },
   { path: ':', component: NotFoundComponent}
 ];
 

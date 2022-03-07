@@ -33,37 +33,37 @@ export class MovieInfoComponent implements OnInit {
     let observable = this.http.get("https://www.omdbapi.com/?t="+ title + "&plot=full&apikey=e1d338ae&")
     observable.subscribe(data => {
       if ((data as MovieData).Response == 'False'){
-        this.router.navigate(['/titeln-finns-inte']);
+        this.router.navigate(['/title-does-not-exist']);
       } else {
         if((data as MovieData).Year == 'N/A'){
-          this.info += "Okänt publiceringsår\n\n"
+          this.info += "Uknown publicing year\n\n"
         } else {
-          this.info += "Publiceringsår: " + (data as MovieData).Year + "\n\n"
+          this.info += "Publicing year: " + (data as MovieData).Year + "\n\n"
         }
         if((data as MovieData).Director == 'N/A'){
-          this.info += "Okänd regissör\n\n"
+          this.info += "Unknown director\n\n"
         } else {
-          this.info += "Regissör: " + (data as MovieData).Director + "\n\n"
+          this.info += "Director: " + (data as MovieData).Director + "\n\n"
         }
         if((data as MovieData).imdbRating == 'N/A'){
-          this.info += "Okänd imdb-rating\n\n"
+          this.info += "Unknown imdb-rating\n\n"
         } else {
           this.info += "imdb-rating: " + (data as MovieData).imdbRating + "\n\n"
         }
         if((data as MovieData).Language == 'N/A'){
-          this.info += "Okänt språk\n\n"
+          this.info += "Unknown language\n\n"
         } else {
-          this.info += "Språk: " + (data as MovieData).Language + "\n\n"
+          this.info += "Language: " + (data as MovieData).Language + "\n\n"
         }
         if((data as MovieData).Actors == 'N/A'){
-          this.info += "Okänt vilka skådespelare som medverkar\n\n"
+          this.info += "Uknown actors\n\n"
         } else {
-          this.info += "Skådespelare: " + (data as MovieData).Actors + "\n\n"
+          this.info += "Actors: " + (data as MovieData).Actors + "\n\n"
         }
         if((data as MovieData).Plot == 'N/A'){
-          this.info += "Finns ingen information om handlingen\n\n"
+          this.info += "No information about the plot\n\n"
         } else {
-          this.info += "Handling: " + (data as MovieData).Plot + "\n\n"
+          this.info += "Plot: " + (data as MovieData).Plot + "\n\n"
         }
       }
     })

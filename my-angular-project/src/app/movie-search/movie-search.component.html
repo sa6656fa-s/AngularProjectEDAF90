@@ -1,9 +1,9 @@
 <div>
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <input id="searchText" type="text" formControlName="searchText">
-        <button class="button" type="submit">Sök</button>
+        <button class="button" type="submit">Search</button>
     </form>
-    <a *ngFor="let movie of movies; let i = index" [attr.data-index]="i" routerLink="/filminformation/{{titles[i]}}">
+    <a *ngFor="let movie of movies; let i = index" [attr.data-index]="i" routerLink="/movie-information/{{titles[i]}}">
         {{movie}} 
         <pre></pre>
     </a>
