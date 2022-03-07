@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 interface MovieData
 {
@@ -23,9 +24,14 @@ export class MovieInfoComponent implements OnInit {
   info: string = ""
   title: string = ""
 
+  orderForm = this.formBuilder.group({
+  });
+
+
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private http: HttpClient){}
+              private http: HttpClient,
+              private formBuilder: FormBuilder){}
 
   ngOnInit(): void {
     let title = this.route.snapshot.paramMap.get('title');
@@ -67,6 +73,11 @@ export class MovieInfoComponent implements OnInit {
         }
       }
     })
+  }
+
+  onSubmit(): void {
+    this.router.navigate(['/shopping-cart', {newTitle: this.title}]);
+    this.orderForm.reset();
   }
 
 }

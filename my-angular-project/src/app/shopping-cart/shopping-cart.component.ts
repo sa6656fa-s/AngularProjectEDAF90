@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  titles: string[] = []
+  constructor(private route: ActivatedRoute) { 
   }
 
+  ngOnInit(): void {
+    this.titles =  JSON.parse(window.localStorage.getItem("titles") as string)
+    let newTitle = this.route.snapshot.paramMap.get('newTitle')
+    console.log(newTitle)
+    if (newTitle != null){
+      this.titles.push(newTitle)
+    }
+    window.localStorage.setItem("titles", JSON.stringify(this.titles))
+  }
+   
 }
