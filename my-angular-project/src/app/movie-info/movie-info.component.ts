@@ -27,6 +27,7 @@ export class MovieInfoComponent implements OnInit {
   showMessage: boolean = false
   message = ""
   showError: boolean = false
+  color: string = "black"
 
   addForm = this.formBuilder.group({
   });
@@ -39,7 +40,6 @@ export class MovieInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.showError = false
-    window.localStorage.setItem("activeTab", "2")
     let title = this.route.snapshot.paramMap.get('title');
     this.title = title as string
     let observable = this.http.get("https://www.omdbapi.com/?t="+ title + "&plot=full&apikey=e1d338ae&")
@@ -90,8 +90,10 @@ export class MovieInfoComponent implements OnInit {
     if (!result.includes(this.title)){
       result.push(this.title)
       this.message = "Item added to cart"
+      this.color = "green"
     } else {
       this.message = "Item already in cart"
+      this.color = "red"
     }
     window.localStorage.setItem("titles", JSON.stringify(result))
     this.showMessage = true

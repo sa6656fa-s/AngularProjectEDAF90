@@ -8,7 +8,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ShoppingCartComponent implements OnInit {
   titles: string[] = []
+  orderedTitles: string[] = []
   submitted: boolean = false
+  emptySubmit: boolean = false
 
   submitOrderForm = this.formBuilder.group({
   });
@@ -16,7 +18,6 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    window.localStorage.setItem("activeTab", "4")
     let storedTitles = window.localStorage.getItem("titles")
     if (storedTitles != null){
       this.titles = JSON.parse(storedTitles)
@@ -27,12 +28,18 @@ export class ShoppingCartComponent implements OnInit {
   }
    
   onSubmit(): void {
-    console.log(this.titles)
-    window.localStorage.clear()
-    window.localStorage.setItem("titles", JSON.stringify([]))
-    this.ngOnInit()
-    this.submitted = true
-    this.submitOrderForm.reset();
+    
+    if (this.titles.length == 0){
+      this.emptySubmit = true
+    } else {
+      this.emptySubmit = false
+      this.orderedTitles = this.titles
+      window.localStorage.clear()
+      window.localStorage.setItem("titles", JSON.stringify([]))
+      this.ngOnInit()
+      this.submitted = true
+      this.submitOrderForm.reset();
+    } 
   }
 
 }

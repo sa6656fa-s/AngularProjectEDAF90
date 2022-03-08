@@ -21,9 +21,6 @@ export class AppComponent {
     else if(url == "http://localhost:4200/shopping-cart"){
       this.activeTab = 4
     } 
-    else if(url.startsWith("http://localhost:4200/movie-information")){
-      this.activeTab = 2
-    }
   }
 
 }

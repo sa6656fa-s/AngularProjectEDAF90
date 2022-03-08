@@ -4,4 +4,11 @@
 <form class="center"[formGroup]="submitOrderForm" (ngSubmit)="onSubmit()">
     <button class="btn btn-primary" *ngIf="!submitted"type="submit">Submit order</button>
 </form>
-<h1 class="center"*ngIf="submitted">Your order has been submitted</h1>
+<h2 class="center"*ngIf="submitted">The following order has been submitted:</h2>
+<div *ngIf="submitted">
+    <h3 class="center"  *ngFor="let title of orderedTitles">
+        {{title}}
+    </h3>
+</div>
+
+<p class="submitEmpty" *ngIf="emptySubmit">You cannot submit an empty order</p>

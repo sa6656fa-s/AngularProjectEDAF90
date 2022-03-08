@@ -24,7 +24,6 @@ export class HomePageComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    window.localStorage.setItem("activeTab", "1")
 
     this.addTitle("The Shawshank Redemption", 0)
     this.addTitle("The Godfather", 1)
