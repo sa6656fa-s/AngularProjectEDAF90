@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 interface MovieInfo
 {
-  Year: String,
-  Director : String,
-  imdbRating: String,
-  Language: String,
-  Actors: String,
-  Plot: String
+  Year: string,
+  Director : string,
+  imdbRating: string,
+  Language: string,
+  Actors: string,
+  Plot: string,
+  Poster: string
 }
 
 @Component({
@@ -19,6 +20,7 @@ interface MovieInfo
 export class HomePageComponent implements OnInit {
   movieInfos: string[] = ["","","","","","","","","",""]
   titles: string[] = ["","","","","","","","","",""]
+  posters: string[] = ["","","","","","","","","",""]
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class HomePageComponent implements OnInit {
     let observable = this.http.get("https://www.omdbapi.com/?t=" + title + "&plot=full&apikey=e1d338ae&")
     observable.subscribe(data => {
       this.titles[index] = title
+      this.posters[index] = (data as MovieInfo).Poster
       let result = "imdb rating: " + (data as MovieInfo).imdbRating + "\n"
       result += "Published: " + (data as MovieInfo).Year + "\n" 
       result += "Director: " + (data as MovieInfo).Director + "\n"
