@@ -1,7 +1,8 @@
 <div class="center">
     <h1>{{title}}</h1>
+    <h2 *ngIf="showError">Unfortunately no movie with this title is available</h2>
     <p style="white-space:pre-wrap;">{{info}}</p>
-    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="!showError" [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <button class="btn btn-primary" type="submit">Add to cart</button>
     </form>
     <option  *ngIf="showMessage">

@@ -26,6 +26,7 @@ export class MovieInfoComponent implements OnInit {
   title: string = ""
   showMessage: boolean = false
   message = ""
+  showError: boolean = false
 
   addForm = this.formBuilder.group({
   });
@@ -37,13 +38,14 @@ export class MovieInfoComponent implements OnInit {
               private formBuilder: FormBuilder){}
 
   ngOnInit(): void {
+    this.showError = false
     window.localStorage.setItem("activeTab", "2")
     let title = this.route.snapshot.paramMap.get('title');
     this.title = title as string
     let observable = this.http.get("https://www.omdbapi.com/?t="+ title + "&plot=full&apikey=e1d338ae&")
     observable.subscribe(data => {
       if ((data as MovieData).Response == 'False'){
-        this.router.navigate(['/title-does-not-exist']);
+        this.showError = true
       } else {
         if((data as MovieData).Year == 'N/A'){
           this.info += "Unknown publicing year\n\n"
