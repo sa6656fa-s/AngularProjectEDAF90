@@ -41,8 +41,8 @@ export class ContactPageComponent implements OnInit {
     this.pos.setStyle(new Style({
       image: new Icon({
         color: '#FFFFFF',
-        src: 'assets/office-svgrepo-com.svg',
-        imgSize: [20,20]
+        src: 'assets/video-player-movie-svgrepo-com.svg',
+        imgSize: [30,25]
 
 
       })
