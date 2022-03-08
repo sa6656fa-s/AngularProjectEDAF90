@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 
 interface MovieData
 {
+  Type: String,
   Response: String,
   Year: String,
   Director : String,
@@ -47,6 +48,11 @@ export class MovieInfoComponent implements OnInit {
       if ((data as MovieData).Response == 'False'){
         this.showError = true
       } else {
+        if((data as MovieData).Type == 'N/A'){
+          this.info += "Uknown type of content\n\n"
+        } else {
+          this.info += "Type of content: " + (data as MovieData).Type + "\n\n"
+        }
         if((data as MovieData).Year == 'N/A'){
           this.info += "Unknown publicing year\n\n"
         } else {
