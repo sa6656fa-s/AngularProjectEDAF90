@@ -1,1 +1,9 @@
-<p class="center">home-page works!</p>
+<h2 class="center">Top ten movies</h2>
+<div class ="center" *ngFor="let title of titles; let i = index">
+    <h3 class="ranking">{{i+1}}.</h3>
+    <a routerLink="/movie-information/{{title}}">
+        {{title}} 
+    </a>
+    <p style="white-space:pre-wrap;">{{movieInfos[i]}}</p>
+</div>
+
